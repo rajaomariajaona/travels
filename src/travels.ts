@@ -907,6 +907,22 @@ export class Travels<
   }
 
   /**
+   * Compress full history and make the current state as initial
+   */
+  public rebase(): void {
+    this.initialState = cloneInitialSnapshot(this.state);
+    this.initialPosition = 0;
+    this.initialPatches = undefined;
+
+    this.position = 0;
+    this.allPatches = cloneTravelPatches();
+    this.tempPatches = cloneTravelPatches();
+
+    this.invalidateHistoryCache();
+    this.notify();
+  }
+
+  /**
    * Check if it's possible to go back
    */
   public canBack(): boolean {
@@ -977,6 +993,7 @@ export class Travels<
         go: (position: number): void => self.go(position),
         canBack: (): boolean => self.canBack(),
         canForward: (): boolean => self.canForward(),
+        rebase: (): void => self.rebase(),
       };
 
     if (!this.autoArchive) {

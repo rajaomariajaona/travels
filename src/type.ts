@@ -102,6 +102,10 @@ export interface TravelsControls<
    * Check if it's possible to go forward
    */
   canForward: () => boolean;
+  /**
+   * Compress full history and make the current state as initial
+   */
+  rebase: () => void;
 }
 
 export interface ManualTravelsControls<

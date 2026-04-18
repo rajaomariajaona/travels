@@ -183,6 +183,10 @@ Jump to a specific position in the history timeline.
 
 Reset to the initial state and clear all history.
 
+#### `rebase(): void`
+
+Compress full history and make the current state as the new initial state. All previous history entries are discarded, and the current state becomes position 0. Useful for optimizing memory after a long session or setting a new baseline.
+
 #### `getHistory(): readonly S[]`
 
 Returns the complete history of states as an array.
