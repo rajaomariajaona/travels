@@ -185,7 +185,10 @@ Reset to the initial state and clear all history.
 
 #### `rebase(): void`
 
-Compress full history and make the current state as the new initial state. All previous history entries are discarded, and the current state becomes position 0. Useful for optimizing memory after a long session or setting a new baseline.
+Remove all past and future history and make the current state as the new initial state.
+
+> [!WARNING]
+> This is a **destructive operation**. All previous and future history entries are discarded, and the current state (including any unarchived temp patches) becomes the new baseline (position 0). Any subsequent `reset()` calls will return to this new baseline, not the original initial state.
 
 #### `getHistory(): readonly S[]`
 

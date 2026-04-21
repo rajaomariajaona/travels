@@ -907,7 +907,10 @@ export class Travels<
   }
 
   /**
-   * Compress full history and make the current state as initial
+   * Remove all history and make the current state (including any unarchived temp patches) as the new initial state.
+   *
+   * This is a destructive operation that discards all history and overwrites
+   * the internal baseline. Future `reset()` calls will return to this snapshot.
    */
   public rebase(): void {
     this.initialState = cloneInitialSnapshot(this.state);
